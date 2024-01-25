@@ -1,1 +1,16 @@
-aAsVN,3,<EOF>
+,,by,,,
+,/,until,false,],
+,-,=,and,=,return,dynamic,continue,or,>,<-,<=,a1,by,),%,),break,a1,/,,,>=,string,true,],by,[,/,return,+,for,+,break,a1,(,>,
+,>,
+,),+,
+,,,number,until,118e-3025,bool,
+,
+,=,>=,func,end,bool,*,
+,==,true,
+,end,end,<=,number,-,>=,
+,),
+,%,
+,not,+,true,
+,,,<=,not,bool,>,
+,until,%,+,
+,<EOF>

@@ -1,0 +1,7 @@
+	)	until return 140.52E-900 =
+number	,
+a1 and	86e-9025
+- for (	) < dynamic / "abcd" 
+	"abcd"	!= continue < != string break return var ]	bool *
+else break	if	% % var
+    

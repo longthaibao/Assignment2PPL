@@ -1,0 +1,8 @@
+func,fbGxRrI,(,pY3P53C,,,pTBwimE,,,p5wpsJ9,,,pIOdPI7,),
+,begin,
+,func,f966j3M,(,pYGGpUM,),
+,begin,
+,number,veAcmxu,<-,-,1305,
+,end,
+,end,
+,<EOF>

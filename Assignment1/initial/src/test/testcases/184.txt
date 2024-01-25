@@ -1,0 +1,5 @@
+func fBCSTGA() 
+ begin 
+vruhQfr <--1594
+ end
+    

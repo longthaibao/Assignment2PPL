@@ -1,0 +1,8 @@
+<=,/,-,
+,bool,until,
+,
+,by,a1,bool,abcd,elif,,,*,
+,var,or,
+,if,*,==,for,until,
+,not,!=,
+,<EOF>

@@ -1,0 +1,2 @@
+string s <- " pfaHa6A \c "
+    

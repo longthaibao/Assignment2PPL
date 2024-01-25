@@ -1,0 +1,9 @@
+func,true,continue,or,or,elif,<=,
+,-,
+,dynamic,
+,==,elif,<=,<-,end,<-,dynamic,bool,+,or,a1,true,break,until,
+,*,%,==,
+,dynamic,*,not,or,var,14e-3844,a1,begin,elif,=,],
+,bool,for,abcd,until,number,end,(,
+,elif,
+,<EOF>

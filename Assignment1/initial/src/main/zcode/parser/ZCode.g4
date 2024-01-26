@@ -11,7 +11,7 @@ options {
 program: decllist EOF;
 
 decllist: decl decllist | decl;
-decl: vardecl | funcdecl;
+decl: vardecl | funcdecl | NL;
 
 //Type and value
 primitype: BOOL | NUMBER | STRING;
@@ -96,6 +96,7 @@ expr9:
 expr10: LEFTPAREN expr0 RIGHTPAREN;
 nllist: nlprime |;
 nlprime: NL nlprime | NL;
+
 // COMMENT
 ZCODE_COMMENT: '##' ~[\r\n]* -> skip;
 //KEYWORD

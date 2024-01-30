@@ -39,11 +39,6 @@ class ZCodeVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ZCodeParser#vararraytype.
-    def visitVararraytype(self, ctx:ZCodeParser.VararraytypeContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by ZCodeParser#sizelist.
     def visitSizelist(self, ctx:ZCodeParser.SizelistContext):
         return self.visitChildren(ctx)

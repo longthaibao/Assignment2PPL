@@ -1,0 +1,9 @@
+ ##diffifcult expresion
+func root(number n)
+func exp(number n)
+func log(number n)
+number pi <- 3.14
+number True <- 1
+bool a <- root(exp(3*pi)-log(pi%2)) = True and ("abcd" == "acc'""..."a")
+ 
+ 

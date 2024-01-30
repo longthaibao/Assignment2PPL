@@ -1,0 +1,9 @@
+ func main()
+begin
+number i<-0
+if (a or b and c)
+	if (a and b or c)
+for i until i==k by a[1]
+elif (k==1) return
+end
+ 

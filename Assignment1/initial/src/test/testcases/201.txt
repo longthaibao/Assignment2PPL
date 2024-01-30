@@ -1,21 +1,13 @@
-##aaaaaaaaaaaaaaa
-
-
-
-
-
-
-
-
-
-
-
-func main()      begin
-    number a
-    var a <- 12
-    var b <- "something you must check '" \r \n \t \f \b \''""
-    dynamic cajfs____90928__
-    string ___________
-    number b[1, 2, 3, 0] <- [[1],[21324], [2123, 2, 1], [1, 2]]
-    return 0
+ dynamic a
+var b<-2
+func main()
+	begin
+if (b=2)
+	a <- b
+elif (b=3)
+	a <- b*2 + 1
+else a <- -1
+return
 end
+
+ 

@@ -1,0 +1,9 @@
+ func jump(number address,number reg) 
+	begin
+reg<-address
+return reg
+end func main() begin
+number reg
+printString(jump(123,reg))
+end
+ 

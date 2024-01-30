@@ -17,25 +17,23 @@ decl: vardecl | funcdecl | NL;
 primitype: BOOL | NUMBER | STRING;
 implitype: VAR | DYNAMIC;
 arraytype:
-	(primitype | DYNAMIC) IDENTIFIER LEFTBRACKET sizelist RIGHTBRACKET;
-vararraytype: VAR IDENTIFIER LEFTBRACKET sizelist RIGHTBRACKET;
+	primitype IDENTIFIER LEFTBRACKET sizelist RIGHTBRACKET;
 sizelist: (NUMBER_LITERAL COMMA sizelist) | NUMBER_LITERAL;
 
 array: LEFTBRACKET (exprprime) RIGHTBRACKET;
 listofArray: (array COMMA listofArray) | array;
 arrayvalue: (LEFTBRACKET (listofArray | exprprime) RIGHTBRACKET);
 //VARIABLE DECLARATION
-vardecl: (vardecl1 | vardecl2 | vardecl3 | vardecl4) nllist;
+vardecl: (vardecl1 | vardecl2 | vardecl3 | vardecl4) nlprime;
 vardecl1: primitype IDENTIFIER (ASSIGN initval)?;
 vardecl2: VAR IDENTIFIER ASSIGN initval;
 vardecl3: DYNAMIC IDENTIFIER (ASSIGN initval)?;
-vardecl4:
-	arraytype (ASSIGN arrayvalue)?
-	| vararraytype (ASSIGN arrayvalue);
+vardecl4: arraytype (ASSIGN arrayvalue)?;
 initval: exprlist;
 
 //FUNCTION DECLARATION
-funcdecl: FUNC IDENTIFIER paramdecl nllist (bodyfunc |) nllist;
+funcdecl:
+	FUNC IDENTIFIER paramdecl ((nllist bodyfunc) | nlprime);
 paramdecl: LEFTPAREN paramlist RIGHTPAREN;
 paramlist: paramprime |;
 paramprime: param COMMA paramprime | param;
@@ -59,11 +57,17 @@ stmt:
 		| returnstmt
 		| funstmt
 		| blockstmt
+		| vardecl
 	);
 forstmt:
 	FOR IDENTIFIER (exprlist) (ASSIGN? exprlist) UNTIL exprprime BY exprprime nllist stmtprime;
-assignstmt: (IDENTIFIER | expr7) ASSIGN exprprime nlprime;
-ifstmt: (IF expr0 nllist stmt) elstmt ( ELSE nllist stmt)?;
+assignstmt: (
+		IDENTIFIER
+		| (IDENTIFIER LEFTBRACKET exprprime RIGHTBRACKET)
+	) ASSIGN exprprime nlprime;
+ifstmt: (IF LEFTPAREN expr0 RIGHTPAREN nllist stmt) elstmt (
+		ELSE nllist stmt
+	)?;
 breakstmt: BREAK nlprime;
 continuestmt: CONTINUE nlprime;
 returnstmt: RETURN exprlist nlprime;
@@ -71,8 +75,8 @@ funstmt: IDENTIFIER LEFTPAREN exprlist RIGHTPAREN nlprime;
 blockstmt: BEGIN nlprime stmtlist END nlprime;
 elstmt: elprime |;
 elprime:
-	ELIF expr0 nllist stmt elprime
-	| ELIF expr0 nllist stmt;
+	ELIF LEFTPAREN expr0 RIGHTPAREN nllist stmt elprime
+	| ELIF LEFTPAREN expr0 RIGHTPAREN nllist stmt;
 //Expression
 exprlist: exprprime |;
 exprprime: expr0 COMMA exprprime | expr0;
@@ -85,13 +89,16 @@ expr3: expr3 (PLUS | MINUS) expr4 | expr4;
 expr4: expr4 ( TIMES | DIVIDED | MOD) expr5 | expr5;
 expr5: NOT expr5 | expr6;
 expr6: MINUS expr6 | expr7;
-expr7: IDENTIFIER LEFTBRACKET exprprime RIGHTBRACKET | expr8;
+expr7:
+	IDENTIFIER (LEFTPAREN exprlist RIGHTPAREN)? LEFTBRACKET exprprime RIGHTBRACKET
+	| expr8;
 expr8: IDENTIFIER LEFTPAREN exprlist RIGHTPAREN | expr9;
 expr9:
 	NUMBER_LITERAL
 	| STRING_LITERAL
 	| BOOLEAN_LITERAL
 	| IDENTIFIER
+	| array
 	| expr10;
 expr10: LEFTPAREN expr0 RIGHTPAREN;
 nllist: nlprime |;
@@ -101,10 +108,13 @@ nlprime: NL nlprime | NL;
 ZCODE_COMMENT: '##' ~[\r\n]* -> skip;
 //KEYWORD
 
+//TYPE LITERAL
+BOOLEAN_LITERAL: 'true' | 'false';
+
 RETURN: 'return';
 FOR: 'for';
 IF: 'if';
-NOT: 'NOT';
+NOT: 'not';
 VAR: 'var';
 UNTIL: 'until';
 ELSE: 'else';
@@ -154,8 +164,6 @@ NUMBER_LITERAL: INTEGERPART (DECIMALPART? EXPONENTPART?)?;
 fragment INTEGERPART: [0-9]+;
 fragment DECIMALPART: '.' [0-9]*;
 fragment EXPONENTPART: [Ee] [+-]? [0-9]+;
-
-BOOLEAN_LITERAL: 'true' | 'false';
 
 STRING_LITERAL:
 	DOUBLEQUOTE CHAR* DOUBLEQUOTE {self.text =self.text[1:-1]};

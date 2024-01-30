@@ -1,0 +1,8 @@
+ func main()
+begin
+number b<-1
+var a<- --------[1,2]*----------------b
+end
+
+
+ 

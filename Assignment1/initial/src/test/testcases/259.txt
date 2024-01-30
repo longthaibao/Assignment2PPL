@@ -1,0 +1,7 @@
+ func abc/def()
+	return "I love PPL"
+func main()
+begin
+printString(abc/def())
+end
+ 

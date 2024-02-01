@@ -1,2 +1,2 @@
- ] not * continue string < var * by '
+ IDENTIFIER ^
     

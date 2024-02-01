@@ -1,1 +1,1 @@
-string,s,<-,Illegal Escape In String:  pfaHa6A \c
+string,s,<-,Illegal Escape In String:  f \#

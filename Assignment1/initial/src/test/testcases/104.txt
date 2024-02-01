@@ -1,11 +1,2 @@
-
-elif not	true break	false !=	by	) 21.75	not	if	, <- ,	a1 == ,	>	/ /
-by true begin < <=	(	or until	,	var	else -
-, "abcd" string
-(	by	continue elif until elif ==	<= not	
-
-not	break	if
-if begin
-% true [	a1	88E-400 func begin bool	
-	== true	* -
+ break + <= >=	] %	by	(	var [
     

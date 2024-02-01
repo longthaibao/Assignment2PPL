@@ -1,1 +1,1 @@
-or,or,true,%,else,[,==,var,Error Token }
+string,by,),STRINGLIT,not,Error Token {

@@ -1,3 +1,2 @@
- ( == / true )
- if |
+ for for not != number bool break and func ;
     

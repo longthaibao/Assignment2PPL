@@ -1,1 +1,1 @@
-string,s,<-,Illegal Escape In String:  JUwKZ \|
+string,s,<-,Illegal Escape In String:  gfJFW \a

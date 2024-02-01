@@ -1,2 +1,2 @@
- / >= ] return break not !
+ true <= IDENTIFIER = bool == + <= @
     

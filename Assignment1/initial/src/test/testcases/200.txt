@@ -1,3 +1,7 @@
- func main()
-	return
- 
+
+            var BaoLong <- true and "true" or 1 
+            var BaoLong <- 1 and 2 and 3 or 4 or 4
+            var BaoLong <- 1 + 2 - 2 + 3 and 3
+            var BaoLong <- 1 / 2 * 3 % 4
+            var BaoLong <- 1 / 2 / 2 * 3 % 4
+        

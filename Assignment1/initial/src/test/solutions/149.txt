@@ -1,1 +1,1 @@
-NUMLIT,%,%,for,return,,,Error Token &
+>,bool,STRINGLIT,[,if,else,=,by,Error Token #

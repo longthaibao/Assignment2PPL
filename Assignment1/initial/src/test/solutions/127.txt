@@ -1,2 +1,1 @@
-string,a,<-,RcMC'"s,
-,<EOF>
+string,a,<-,Unclosed String: O79f'"s a

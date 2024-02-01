@@ -1,5 +1,2 @@
-func fBCSTGA() 
- begin 
-vruhQfr <--1594
- end
+boolean vgVQtc3 <-2581
     

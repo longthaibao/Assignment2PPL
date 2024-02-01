@@ -1,1 +1,1 @@
-and,for,until,dynamic,Error Token ;
+dynamic,>=,begin,true,until,and,<=,bool,Error Token |

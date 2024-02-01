@@ -1,2 +1,2 @@
- or or true % else [ == var }
+ string by ) STRINGLIT not {
     

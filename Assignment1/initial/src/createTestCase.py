@@ -73,14 +73,11 @@ def genStatement():
 def testcase(idx,input,expect,kind):
     if kind == "lexer":
         testcase = f"""
-    def test_case_{idx}(self):
+    def test_case_{idx+100}(self):
         input = \"\"\"{input}
     \"\"\"
         expect = "{expect}"
-        try:
-            self.assertTrue(TestLexer.test(input,expect,{100+idx}))
-        except:
-            print("fail testcase {idx}")
+        self.assertTrue(TestLexer.test(input,expect,{100+idx}))
         """
         return testcase
     elif kind=='parser':
@@ -141,13 +138,13 @@ class LexerSuite(unittest.TestCase):
                 expect.append('<EOF>')
                 f.write(testcase(idx,code,','.join(expect),'lexer'))
             elif idx>=10 and idx < 15: #about identifier
-                iden = ['abc123','1ae','1.232eabc','abC1#','_abt']
-                expect = [['abc123','\\n','<EOF>'],['1','ae','\\n','<EOF>'],['1.232','eabc','\\n','<EOF>'],
-                          ['abC1','Error Token #'],['_abt','\\n','<EOF>']]
+                iden = ['a438hfd','32372shd','246.01e3abc','dsfhds#','_sh73']
+                expect = [['a438hfd','\\n','<EOF>'],['32372','shd','\\n','<EOF>'],['246.01e3','abc','\\n','<EOF>'],
+                          ['dsfhds','Error Token #'],['_sh73','\\n','<EOF>']]
                 f.write(testcase(idx,'dynamic '+iden[idx-10],','.join(['dynamic']+expect[idx-10]),'lexer'))
             elif idx>=15 and idx<20: # comment check
                 blank = {i:"" for i in range(5)}
-                expect = ["func","main","(",")","\\n","begin","\\n","##hello","\\n",'## \\"hello\\"',"\\n","var","a","<-", "## comment in string","\\n", "end","\\n",'\\n',"<EOF>"]
+                expect = ["func","main","(",")","\\n","begin","\\n","\\n","\\n","var","a","<-", "## comment in string","\\n", "end","\\n",'\\n',"<EOF>"]
                 blank[idx-15] = "## comment"
                 code = f"""
 {blank[0]}
@@ -243,7 +240,7 @@ end
                 f.write(testcase(idx,input,','.join(expect),'lexer'))
 
 
-def main(seed=142):
+def main(seed=27102003):
     createLexerTestCase(seed)
 
 main()

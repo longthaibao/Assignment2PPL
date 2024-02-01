@@ -1,1 +1,1 @@
-func,false,bool,func,dynamic,for,<,func,Error Token '
+IDENTIFIER,<-,+,true,Error Token &

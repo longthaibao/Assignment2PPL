@@ -1,17 +1,5 @@
- or bool
-string	>
-<= var ...
-number	/ string +	begin	begin	return	/	else	... by
-break	until	[ [ ] / string
-for true == for != =
-break
-or
-end ...
-by return ... func or continue
-if end until
-if else ==	<=
-... 
-	)	<- <=	"abcd" and
-"abcd"	a1
-]	- return [	else break
+
+until end true	and	(
+"abcd"	continue	+
+not	bool
     

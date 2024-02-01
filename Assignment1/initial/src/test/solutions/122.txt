@@ -1,2 +1,1 @@
-string,a,<-,g55p'"s,
-,<EOF>
+string,a,<-,dtsE,s,Unclosed String: 

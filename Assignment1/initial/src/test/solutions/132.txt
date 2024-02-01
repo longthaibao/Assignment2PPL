@@ -1,1 +1,1 @@
-%,string,/,,,,,+,...,>,break,Error Token {
+...,Error Token }

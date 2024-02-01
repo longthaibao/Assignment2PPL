@@ -1,1 +1,1 @@
-/,>=,],return,break,not,Error Token !
+true,<=,IDENTIFIER,=,bool,==,+,<=,Error Token @

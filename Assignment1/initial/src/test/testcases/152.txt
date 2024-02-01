@@ -1,2 +1,2 @@
-string s <- " n5dejFXJ \A "
+string s <- " jJI \= "
     

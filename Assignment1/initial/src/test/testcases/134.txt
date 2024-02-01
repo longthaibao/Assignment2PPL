@@ -1,2 +1,2 @@
- and for until dynamic ;
+ dynamic >= begin true until and <= bool |
     

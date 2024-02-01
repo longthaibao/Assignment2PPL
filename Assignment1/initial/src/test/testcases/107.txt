@@ -1,7 +1,17 @@
-	)	until return 140.52E-900 =
-number	,
-a1 and	86e-9025
-- for (	) < dynamic / "abcd" 
-	"abcd"	!= continue < != string break return var ]	bool *
-else break	if	% % var
+ number ]	string	break	<	>=
+%	for > ...	true a1 by	by bool <= %	- < return	!= end	and	>= *
+<
+by return	and or	or	bool begin
+a1 <- break var -	number
+begin	*	for	!= !=	and	==	false	else - var > true
+true	for number
+86.26	,
+-	true else
+by	number
+
+ until bool or else	<- ,	continue
+dynamic	or
+false )	dynamic string
+/	[ <= "abcd"	string	>=	%
+]	continue "abcd"	return
     

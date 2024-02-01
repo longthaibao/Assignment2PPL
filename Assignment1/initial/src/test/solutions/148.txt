@@ -1,1 +1,1 @@
-(,+,-,else,Error Token $
+not,return,Error Token &

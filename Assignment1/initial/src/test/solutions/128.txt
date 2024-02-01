@@ -1,1 +1,2 @@
-string,a,<-,Unclosed String: UjdZ'"s a
+string,a,<-,dImJ'"s,
+,<EOF>

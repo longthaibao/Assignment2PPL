@@ -1,2 +1,1 @@
-(,==,/,true,),
-,if,Error Token |
+for,for,not,!=,number,bool,break,and,func,Error Token ;

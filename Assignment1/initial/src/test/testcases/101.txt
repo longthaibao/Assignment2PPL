@@ -1,25 +1,10 @@
-	
-
-==	func
->= var
-...	break	not 105 <-	=	]	string "abcd" ] until	<
-begin ) "abcd" != continue
-
-
-"abcd" number >=	break var bool end , < break end	- 33.53e324	!= not
-
-	]
-string (
-bool [ number
-==	(
-begin
-by	if -	if	>=
-24.69	false +	/ not continue	and ]	]
-<= end bool	<-	continue
-(
-bool else not ==
-begin for
-if true	=	func begin ...
-( * or	for until elif	[
-) for
+ )	< elif end
+"abcd"	until	var
+false	and <-	<=	return >= 
+ != = ,	by	== true /	begin func
+if elif %	)	elif >=
+= != 109.64E-64	,
+func for + > !=	[ dynamic number (
++ true	<= == continue	<= 105.85e8100	by >
+break if
     

@@ -1,2 +1,2 @@
-string s <- " 9b8m \c "
+string s <- " m \= "
     

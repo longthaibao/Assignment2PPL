@@ -1,6 +1,5 @@
+ func main() ##main function
+begin
 
-        func main()
-            begin   
-                if (api <- 1)
-            end
-        
+end
+ 

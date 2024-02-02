@@ -1,6 +1,2 @@
-
-        func main()
-            begin
-            (aPI)[2]<- 3.14
-            end
-        
+ var dynamic <- -1
+ 

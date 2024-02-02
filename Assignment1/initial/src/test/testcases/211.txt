@@ -1,1 +1,17 @@
- var BaoLong <- "Vo" ... "Tien" 
+ ##if else case
+func main()
+begin
+var a<-3
+var b<-4
+if (a<b) a<-b+a
+if (b<a) 
+	if (a=3) b<-b-a
+	elif (b=4)
+		if (a=7)
+			b<-a%b
+		else b<-b%a
+	else b<-b-a
+else b <- 3
+
+end
+ 

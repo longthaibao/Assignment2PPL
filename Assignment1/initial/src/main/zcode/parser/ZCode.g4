@@ -1,17 +1,18 @@
+// 2113946
 grammar ZCode;
 
 @lexer::header {
+# 2113946 - Thai Bao Long
 from lexererr import *
 }
-
 options {
 	language = Python3;
 }
 
-program: decllist EOF;
+program: nllist decllist EOF;
 
 decllist: decl decllist | decl;
-decl: vardecl | funcdecl | NL;
+decl: vardecl | funcdecl;
 
 //Type and value
 primitype: BOOL | NUMBER | STRING;
@@ -60,7 +61,7 @@ stmt:
 		| vardecl
 	);
 forstmt:
-	FOR IDENTIFIER (exprlist) (ASSIGN? exprlist) UNTIL exprprime BY exprprime nllist stmtprime;
+	FOR IDENTIFIER (ASSIGN exprlist)? UNTIL exprprime BY exprprime nllist stmtprime;
 assignstmt: (
 		IDENTIFIER
 		| (IDENTIFIER LEFTBRACKET exprprime RIGHTBRACKET)
@@ -131,7 +132,6 @@ BEGIN: 'begin';
 STRING: 'string';
 CONTINUE: 'continue';
 END: 'end';
-ARRAY: 'array';
 // Operators
 
 PLUS: '+';
@@ -154,8 +154,6 @@ RIGHTPAREN: ')';
 LEFTBRACKET: '[';
 RIGHTBRACKET: ']';
 COMMA: ',';
-fragment COLON: ':';
-fragment SEMI: ';';
 NL: [\n];
 
 // Literals

@@ -1,7 +1,4 @@
-
-        func main()
-            begin
-            for i[1] until i >= 10 by 1 + 1
-                a <- 1
-            end
-        
+ func main() begin
+bool a <- foo((x < -2) or (("a'""..."a\'") == "a'"a\'"))[3,2]
+end
+ 

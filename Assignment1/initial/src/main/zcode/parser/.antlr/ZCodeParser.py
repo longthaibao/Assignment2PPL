@@ -82,7 +82,7 @@ def serializedATN():
         23,1,0,0,0,162,163,5,7,0,0,163,164,5,45,0,0,164,165,5,30,0,0,165,
         166,3,30,15,0,166,25,1,0,0,0,167,168,5,12,0,0,168,171,5,45,0,0,169,
         170,5,30,0,0,170,172,3,30,15,0,171,169,1,0,0,0,171,172,1,0,0,0,172,
-        27,1,0,0,0,173,176,3,10,5,0,174,175,5,30,0,0,175,177,3,18,9,0,176,
+        27,1,0,0,0,173,176,3,10,5,0,174,175,5,30,0,0,175,177,3,74,37,0,176,
         174,1,0,0,0,176,177,1,0,0,0,177,29,1,0,0,0,178,179,3,70,35,0,179,
         31,1,0,0,0,180,181,5,17,0,0,181,182,5,45,0,0,182,187,3,34,17,0,183,
         184,3,96,48,0,184,185,3,42,21,0,185,188,1,0,0,0,186,188,3,98,49,
@@ -1080,8 +1080,8 @@ class ZCodeParser ( Parser ):
         def ASSIGN(self):
             return self.getToken(ZCodeParser.ASSIGN, 0)
 
-        def arrayvalue(self):
-            return self.getTypedRuleContext(ZCodeParser.ArrayvalueContext,0)
+        def expr0(self):
+            return self.getTypedRuleContext(ZCodeParser.Expr0Context,0)
 
 
         def getRuleIndex(self):
@@ -1106,7 +1106,7 @@ class ZCodeParser ( Parser ):
                 self.state = 174
                 self.match(ZCodeParser.ASSIGN)
                 self.state = 175
-                self.arrayvalue()
+                self.expr0()
 
 
         except RecognitionException as re:

@@ -1409,7 +1409,7 @@ number line[1e9] <- createArray(10)
 
  """
         # expect = "successful"
-        expect = "Error on line 2 col 20: createArray"
+        expect = "successful"
         try:
             self.assertTrue(TestParser.test(input,expect,285))
         except:
@@ -1418,7 +1418,7 @@ number line[1e9] <- createArray(10)
     def test_case_86(self):
         input = """ string a[10] <- "abc"
  """
-        expect = "Error on line 1 col 17: abc"
+        expect = "successful"
         # expect = "successful"
         try:
             self.assertTrue(TestParser.test(input,expect,286))
@@ -1610,3 +1610,4 @@ end
             self.assertTrue(TestParser.test(input,expect,299))
         except:
             print("fail testcase 99")
+

@@ -93,26 +93,26 @@ def serializedATN():
         buf.write("\5 \21\2\u00a8\33\3\2\2\2\u00a9\u00aa\7\16\2\2\u00aa\u00ad")
         buf.write("\7/\2\2\u00ab\u00ac\7 \2\2\u00ac\u00ae\5 \21\2\u00ad\u00ab")
         buf.write("\3\2\2\2\u00ad\u00ae\3\2\2\2\u00ae\35\3\2\2\2\u00af\u00b2")
-        buf.write("\5\f\7\2\u00b0\u00b1\7 \2\2\u00b1\u00b3\5\24\13\2\u00b2")
-        buf.write("\u00b0\3\2\2\2\u00b2\u00b3\3\2\2\2\u00b3\37\3\2\2\2\u00b4")
-        buf.write("\u00b5\5H%\2\u00b5!\3\2\2\2\u00b6\u00b7\7\23\2\2\u00b7")
-        buf.write("\u00b8\7/\2\2\u00b8\u00bd\5$\23\2\u00b9\u00ba\5b\62\2")
-        buf.write("\u00ba\u00bb\5,\27\2\u00bb\u00be\3\2\2\2\u00bc\u00be\5")
-        buf.write("d\63\2\u00bd\u00b9\3\2\2\2\u00bd\u00bc\3\2\2\2\u00be#")
-        buf.write("\3\2\2\2\u00bf\u00c0\7\'\2\2\u00c0\u00c1\5&\24\2\u00c1")
-        buf.write("\u00c2\7(\2\2\u00c2%\3\2\2\2\u00c3\u00c6\5(\25\2\u00c4")
-        buf.write("\u00c6\3\2\2\2\u00c5\u00c3\3\2\2\2\u00c5\u00c4\3\2\2\2")
-        buf.write("\u00c6\'\3\2\2\2\u00c7\u00c8\5*\26\2\u00c8\u00c9\7+\2")
-        buf.write("\2\u00c9\u00ca\5(\25\2\u00ca\u00cd\3\2\2\2\u00cb\u00cd")
-        buf.write("\5*\26\2\u00cc\u00c7\3\2\2\2\u00cc\u00cb\3\2\2\2\u00cd")
-        buf.write(")\3\2\2\2\u00ce\u00d5\5\b\5\2\u00cf\u00d6\7/\2\2\u00d0")
-        buf.write("\u00d1\7/\2\2\u00d1\u00d2\7)\2\2\u00d2\u00d3\5J&\2\u00d3")
-        buf.write("\u00d4\7*\2\2\u00d4\u00d6\3\2\2\2\u00d5\u00cf\3\2\2\2")
-        buf.write("\u00d5\u00d0\3\2\2\2\u00d6+\3\2\2\2\u00d7\u00da\5> \2")
-        buf.write("\u00d8\u00da\5B\"\2\u00d9\u00d7\3\2\2\2\u00d9\u00d8\3")
-        buf.write("\2\2\2\u00da-\3\2\2\2\u00db\u00de\5\60\31\2\u00dc\u00de")
-        buf.write("\3\2\2\2\u00dd\u00db\3\2\2\2\u00dd\u00dc\3\2\2\2\u00de")
-        buf.write("/\3\2\2\2\u00df\u00e4\5\62\32\2\u00e0\u00e1\5\26\f\2\u00e1")
+        buf.write("\5\f\7\2\u00b0\u00b1\7 \2\2\u00b1\u00b3\5L\'\2\u00b2\u00b0")
+        buf.write("\3\2\2\2\u00b2\u00b3\3\2\2\2\u00b3\37\3\2\2\2\u00b4\u00b5")
+        buf.write("\5H%\2\u00b5!\3\2\2\2\u00b6\u00b7\7\23\2\2\u00b7\u00b8")
+        buf.write("\7/\2\2\u00b8\u00bd\5$\23\2\u00b9\u00ba\5b\62\2\u00ba")
+        buf.write("\u00bb\5,\27\2\u00bb\u00be\3\2\2\2\u00bc\u00be\5d\63\2")
+        buf.write("\u00bd\u00b9\3\2\2\2\u00bd\u00bc\3\2\2\2\u00be#\3\2\2")
+        buf.write("\2\u00bf\u00c0\7\'\2\2\u00c0\u00c1\5&\24\2\u00c1\u00c2")
+        buf.write("\7(\2\2\u00c2%\3\2\2\2\u00c3\u00c6\5(\25\2\u00c4\u00c6")
+        buf.write("\3\2\2\2\u00c5\u00c3\3\2\2\2\u00c5\u00c4\3\2\2\2\u00c6")
+        buf.write("\'\3\2\2\2\u00c7\u00c8\5*\26\2\u00c8\u00c9\7+\2\2\u00c9")
+        buf.write("\u00ca\5(\25\2\u00ca\u00cd\3\2\2\2\u00cb\u00cd\5*\26\2")
+        buf.write("\u00cc\u00c7\3\2\2\2\u00cc\u00cb\3\2\2\2\u00cd)\3\2\2")
+        buf.write("\2\u00ce\u00d5\5\b\5\2\u00cf\u00d6\7/\2\2\u00d0\u00d1")
+        buf.write("\7/\2\2\u00d1\u00d2\7)\2\2\u00d2\u00d3\5J&\2\u00d3\u00d4")
+        buf.write("\7*\2\2\u00d4\u00d6\3\2\2\2\u00d5\u00cf\3\2\2\2\u00d5")
+        buf.write("\u00d0\3\2\2\2\u00d6+\3\2\2\2\u00d7\u00da\5> \2\u00d8")
+        buf.write("\u00da\5B\"\2\u00d9\u00d7\3\2\2\2\u00d9\u00d8\3\2\2\2")
+        buf.write("\u00da-\3\2\2\2\u00db\u00de\5\60\31\2\u00dc\u00de\3\2")
+        buf.write("\2\2\u00dd\u00db\3\2\2\2\u00dd\u00dc\3\2\2\2\u00de/\3")
+        buf.write("\2\2\2\u00df\u00e4\5\62\32\2\u00e0\u00e1\5\26\f\2\u00e1")
         buf.write("\u00e2\5d\63\2\u00e2\u00e4\3\2\2\2\u00e3\u00df\3\2\2\2")
         buf.write("\u00e3\u00e0\3\2\2\2\u00e4\u00e5\3\2\2\2\u00e5\u00e6\5")
         buf.write("\60\31\2\u00e6\u00ee\3\2\2\2\u00e7\u00ec\5\62\32\2\u00e8")
@@ -1206,8 +1206,8 @@ class ZCodeParser ( Parser ):
         def ASSIGN(self):
             return self.getToken(ZCodeParser.ASSIGN, 0)
 
-        def arrayvalue(self):
-            return self.getTypedRuleContext(ZCodeParser.ArrayvalueContext,0)
+        def expr0(self):
+            return self.getTypedRuleContext(ZCodeParser.Expr0Context,0)
 
 
         def getRuleIndex(self):
@@ -1238,7 +1238,7 @@ class ZCodeParser ( Parser ):
                 self.state = 174
                 self.match(ZCodeParser.ASSIGN)
                 self.state = 175
-                self.arrayvalue()
+                self.expr0()
 
 
         except RecognitionException as re:

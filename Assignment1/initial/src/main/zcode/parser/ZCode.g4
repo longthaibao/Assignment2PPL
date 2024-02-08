@@ -29,7 +29,7 @@ vardecl: (vardecl1 | vardecl2 | vardecl3 | vardecl4) nlprime;
 vardecl1: primitype IDENTIFIER (ASSIGN initval)?;
 vardecl2: VAR IDENTIFIER ASSIGN initval;
 vardecl3: DYNAMIC IDENTIFIER (ASSIGN initval)?;
-vardecl4: arraytype (ASSIGN arrayvalue)?;
+vardecl4: arraytype (ASSIGN expr0)?;
 initval: exprlist;
 
 //FUNCTION DECLARATION
@@ -106,7 +106,7 @@ nllist: nlprime |;
 nlprime: NL nlprime | NL;
 
 // COMMENT
-ZCODE_COMMENT: '##' ~[\r\n]* -> skip;
+ZCODE_COMMENT: '##' ~[\n]* -> skip;
 //KEYWORD
 
 //TYPE LITERAL
@@ -154,7 +154,7 @@ RIGHTPAREN: ')';
 LEFTBRACKET: '[';
 RIGHTBRACKET: ']';
 COMMA: ',';
-NL: [\n];
+NL: '\n' | '\r\n' {self.text = '\n'};
 
 // Literals
 
@@ -173,7 +173,7 @@ fragment SIZE: [0-9]+;
 
 IDENTIFIER: [a-zA-Z_][a-zA-Z0-9_]*;
 // fragment LETTER: [a-zA-Z]; fragment DIGIT: [0-9]; fragment UNDERSCORE: '_';
-WS: [ \t\b\f\r]+ -> skip; // skip spaces, tabs, newlines
+WS: [ \t\b\f]+ -> skip; // skip spaces, tabs, newlines
 UNCLOSE_STRING:
 	'"' CHAR* ([\n\r] | EOF) {
 	if self.text[-1] in ['\n','\r','EOF']:

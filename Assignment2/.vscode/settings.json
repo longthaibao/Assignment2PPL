@@ -1,0 +1,8 @@
+{
+  "python.analysis.extraPaths": [
+    "./assignment2-initial/target/main/zcode/parser",
+    "./assignment2-initial/src/main/zcode/utils"
+  ],
+  "editor.fontFamily": "Jetbrains Mono",
+  "editor.fontSize": 17
+}

@@ -30,7 +30,7 @@ vardecl1: primitype IDENTIFIER (ASSIGN initval)?;
 vardecl2: VAR IDENTIFIER ASSIGN initval;
 vardecl3: DYNAMIC IDENTIFIER (ASSIGN initval)?;
 vardecl4: arraytype (ASSIGN expr0)?;
-initval: exprlist;
+initval: expr0;
 
 //FUNCTION DECLARATION
 funcdecl:
@@ -61,17 +61,17 @@ stmt:
 		| vardecl
 	);
 forstmt:
-	FOR IDENTIFIER (ASSIGN exprlist)? UNTIL exprprime BY exprprime nllist stmtprime;
+	FOR IDENTIFIER (ASSIGN exprlist)? UNTIL expr0 BY expr0 nllist stmtprime;
 assignstmt: (
 		IDENTIFIER
 		| (IDENTIFIER LEFTBRACKET exprprime RIGHTBRACKET)
-	) ASSIGN exprprime nlprime;
+	) ASSIGN expr0 nlprime;
 ifstmt: (IF LEFTPAREN expr0 RIGHTPAREN nllist stmt) elstmt (
 		ELSE nllist stmt
 	)?;
 breakstmt: BREAK nlprime;
 continuestmt: CONTINUE nlprime;
-returnstmt: RETURN exprlist nlprime;
+returnstmt: RETURN (expr0 |) nlprime;
 funstmt: IDENTIFIER LEFTPAREN exprlist RIGHTPAREN nlprime;
 blockstmt: BEGIN nlprime stmtlist END nlprime;
 elstmt: elprime |;

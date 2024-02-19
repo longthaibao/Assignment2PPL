@@ -1,0 +1,4 @@
+ ##dynamic function
+dynamic func a() return 3
+
+ 

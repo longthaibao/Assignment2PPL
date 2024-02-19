@@ -1,0 +1,16 @@
+
+,break,end,dynamic,
+,,,<,true,,,abcd,true,
+,abcd,...,or,>=,<,begin,abcd,...,continue,!=,var,>,*,abcd,dynamic,
+,...,and,dynamic,else,end,abcd,>,by,if,
+,...,>=,bool,=,number,
+,(,122e8464,
+,for,/,(,number,/,
+,=,else,
+,!=,!=,
+,func,
+,%,+,func,*,...,var,
+,<,begin,
+,for,or,until,<=,elif,if,and,else,abcd,
+,func,continue,
+,<EOF>

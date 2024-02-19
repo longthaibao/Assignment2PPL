@@ -1,0 +1,6 @@
+ func abcdef()
+	return "I love PPL"
+func main()
+
+printString(abcdef())
+ 

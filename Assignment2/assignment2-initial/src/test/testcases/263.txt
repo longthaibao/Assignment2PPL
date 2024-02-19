@@ -1,0 +1,4 @@
+ func main() begin
+number arr[3] <- []
+end
+ 

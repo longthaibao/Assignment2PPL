@@ -1,0 +1,17 @@
+ ## end line in statement
+func len(string s)
+begin
+var i<-0
+for i until s[i] by 1
+begin
+end
+return i
+end
+func main()
+begin
+string a<-"we will check the end of statement is \n" ##correct statement
+if (len(s)<3) printString("this is short string") else
+printString("this is long string")
+end
+
+ 

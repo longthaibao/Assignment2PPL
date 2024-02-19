@@ -1,0 +1,1 @@
+true,<=,IDENTIFIER,=,bool,==,+,<=,Error Token @

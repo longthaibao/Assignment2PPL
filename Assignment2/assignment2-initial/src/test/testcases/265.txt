@@ -1,0 +1,6 @@
+ func foo(number n ##this is a function )
+begin
+
+end
+
+ 

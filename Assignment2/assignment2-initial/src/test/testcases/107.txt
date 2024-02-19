@@ -1,0 +1,17 @@
+ number ]	string	break	<	>=
+%	for > ...	true a1 by	by bool <= %	- < return	!= end	and	>= *
+<
+by return	and or	or	bool begin
+a1 <- break var -	number
+begin	*	for	!= !=	and	==	false	else - var > true
+true	for number
+86.26	,
+-	true else
+by	number
+
+ until bool or else	<- ,	continue
+dynamic	or
+false )	dynamic string
+/	[ <= "abcd"	string	>=	%
+]	continue "abcd"	return
+    

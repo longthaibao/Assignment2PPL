@@ -45,7 +45,7 @@ end
         expect = "successful"
         try:
             self.assertTrue(TestParser.test(input,expect,202))
-        except:
+        except
             print("fail testcase 2")
         
     def test_case_3(self):

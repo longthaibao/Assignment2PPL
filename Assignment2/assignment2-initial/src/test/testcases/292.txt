@@ -1,0 +1,3 @@
+ ## func declare
+func root(var a)
+ 

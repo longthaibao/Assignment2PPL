@@ -1,0 +1,1 @@
+Program([FuncDecl(Id(test_exp), [], Block([VarDecl(Id(a), BoolType, None, Id(f)), Return(Id(a))]))])

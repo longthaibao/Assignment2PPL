@@ -1,0 +1,16 @@
+ dynamic % for	)
+
+
+"abcd" a1 func	func	if	<-	for	112	if	dynamic break return return
+[ <-	<=
+, + >
+>= <
+>= ,	... a1 by
+false true
+string	not
+<=	for == true	until
+<=	==	by for	[
+false	*	a1 string false
+20.8e-9801 dynamic else ]	72 %	[ "abcd"	and
+break
+    

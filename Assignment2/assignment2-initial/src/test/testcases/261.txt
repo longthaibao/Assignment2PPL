@@ -1,0 +1,5 @@
+ ##index op
+func main() begin
+number a<- "abc"[0]
+end
+ 

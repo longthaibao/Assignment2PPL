@@ -1,0 +1,7 @@
+ ##string test
+func str(number n,bool b<-True)
+func main()
+begin
+string s<- str(True)
+end
+ 

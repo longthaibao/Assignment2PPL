@@ -1,0 +1,7 @@
+ ## array check
+func main()
+begin
+var a[2,3] = [[0.1,1e9,3.14e-23],[-2,-3,-4]]
+
+end
+ 

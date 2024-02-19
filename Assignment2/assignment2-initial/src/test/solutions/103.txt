@@ -1,1 +1,3 @@
-aAsVN,3,<EOF>
+break,if,<=,
+,,,end,not,abcd,abcd,,,for,end,elif,begin,false,
+,<EOF>

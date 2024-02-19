@@ -1,1 +1,3 @@
-aAsVN3
+	break	if <=
+, end	not "abcd"	"abcd" ,	for end elif begin false
+    

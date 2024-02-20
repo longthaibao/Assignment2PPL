@@ -4,9 +4,29 @@ from TestUtils import TestParser
 class ParserSuite(unittest.TestCase): 
         
     def test_case_0(self):
-        input = """ func main()
-	return
- """
+        input = """
+        func main() begin 
+        end
+        func main() 
+            begin 
+                ## comment0
+            end
+        func main()
+            ## comment1
+            begin
+                ## comment2
+                
+                ## comment3
+                abcxyz <- 1 + 2 + fun()
+                abcxyz[1+a] <- 1
+                
+                ## comment4
+                abcxyz[3+4,2,4] <- 1
+                
+                ## comment5
+            end
+            ## comment
+        """
         expect = "successful"
         try:
             self.assertTrue(TestParser.test(input,expect,200))

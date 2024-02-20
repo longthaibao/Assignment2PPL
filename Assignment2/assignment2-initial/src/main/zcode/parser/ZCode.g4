@@ -41,7 +41,7 @@ paramprime: param COMMA paramprime | param;
 param:
 	primitype (
 		IDENTIFIER
-		| IDENTIFIER LEFTBRACKET exprprime RIGHTBRACKET
+		| IDENTIFIER LEFTBRACKET sizelist RIGHTBRACKET
 	);
 bodyfunc: returnstmt | blockstmt;
 //Statement
@@ -60,8 +60,7 @@ stmt:
 		| blockstmt
 		| vardecl
 	);
-forstmt:
-	FOR IDENTIFIER (ASSIGN exprlist)? UNTIL expr0 BY expr0 nllist stmtprime;
+forstmt: FOR IDENTIFIER UNTIL expr0 BY expr0 nllist stmt;
 assignstmt: (
 		IDENTIFIER
 		| (IDENTIFIER LEFTBRACKET exprprime RIGHTBRACKET)

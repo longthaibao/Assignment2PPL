@@ -63,14 +63,20 @@ class ASTGeneration(ZCodeVisitor):
    # arraytype: primitype IDENTIFIER LEFTBRACKET sizelist RIGHTBRACKET;
    def visitArraytype(self,ctx:ZCodeParser.ArraytypeContext):
        primitype = self.visit(ctx.primitype())
+       if primitype == 'bool':
+              primitype = BoolType()
+       elif primitype == 'number':
+              primitype = NumberType()
+       else:
+              primitype = StringType()
        sizelist = self.visit(ctx.sizelist())
        return ArrayType(sizelist,primitype),ctx.IDENTIFIER().getText()
    # sizelist: (NUMBER_LITERAL COMMA sizelist) | NUMBER_LITERAL;
    def visitSizelist(self,ctx:ZCodeParser.SizelistContext):
        if ctx.getChildCount() == 1:
-           return [int(ctx.NUMBER_LITERAL().getText())]
+           return [float(ctx.NUMBER_LITERAL().getText())]
        else:
-           return [int(ctx.NUMBER_LITERAL().getText())] + self.visit(ctx.sizelist())
+           return [float(ctx.NUMBER_LITERAL().getText())] + self.visit(ctx.sizelist())
    # array: LEFTBRACKET (exprprime) RIGHTBRACKET;
    def visitArray(self,ctx:ZCodeParser.ArrayContext):
        return ArrayLiteral(self.visit(ctx.exprprime()))
@@ -98,7 +104,7 @@ class ASTGeneration(ZCodeVisitor):
            return [self.visit(ctx.param())]
        else:
            return [self.visit(ctx.param())] + self.visit(ctx.paramprime())
-   # param: primitype (IDENTIFIER| IDENTIFIER LEFTBRACKET exprprime RIGHTBRACKET);
+   # param: primitype (IDENTIFIER| IDENTIFIER LEFTBRACKET sizelist RIGHTBRACKET);
    def visitParam(self,ctx:ZCodeParser.ParamContext):
        primitype = self.visit(ctx.primitype())
        if primitype == 'bool':
@@ -107,10 +113,11 @@ class ASTGeneration(ZCodeVisitor):
               primitype = NumberType()
        else:
               primitype = StringType()
-       if ctx.exprprime():
+       if ctx.sizelist():
            IDENTIFIER = ctx.IDENTIFIER().getText()
-           exprprime = self.visit(ctx.exprprime())
-           return VarDecl(Id(IDENTIFIER),primitype,None,exprprime)
+           sizelist = self.visit(ctx.sizelist())
+           type= ArrayType(sizelist,primitype)
+           return VarDecl(Id(IDENTIFIER),type,None,None)
        else:
            return VarDecl(Id(ctx.IDENTIFIER().getText()),primitype,None,None)
    # bodyfunc: returnstmt | blockstmt;
@@ -150,22 +157,22 @@ class ASTGeneration(ZCodeVisitor):
            return self.visit(ctx.blockstmt())
        elif ctx.vardecl():
            return self.visit(ctx.vardecl())
-       # assignstmt: (IDENTIFIER| (IDENTIFIER LEFTBRACKET exprprime RIGHTBRACKET)) ASSIGN exprprime nlprime;
+    # assignstmt: (IDENTIFIER| (IDENTIFIER LEFTBRACKET exprprime RIGHTBRACKET)) ASSIGN expr0 nlprime;
    def visitAssignstmt(self,ctx:ZCodeParser.AssignstmtContext):
        if ctx.LEFTBRACKET():
-           lhs=ArrayCell(Id(ctx.IDENTIFIER().getText()),self.visit(ctx.exprprime(0)))
-           rhs = self.visit(ctx.expr0(0)) if ctx.expr0(0) else None
+           lhs=ArrayCell(Id(ctx.IDENTIFIER().getText()),self.visit(ctx.exprprime()))
+           rhs = self.visit(ctx.expr0()) if ctx.expr0() else None
        else:
            lhs=Id(ctx.IDENTIFIER().getText())
-           rhs = self.visit(ctx.expr0(0)) if ctx.expr0(0) else None
+           rhs = self.visit(ctx.expr0()) if ctx.expr0() else None
        return Assign(lhs,rhs)
-   # forstmt: FOR IDENTIFIER (ASSIGN exprlist)? UNTIL exprprime BY exprprime nllist stmtprime;
+    # forstmt: FOR IDENTIFIER UNTIL expr0 BY expr0 nllist stmt;
    def visitForstmt(self,ctx:ZCodeParser.ForstmtContext):
-       IDENTIFIER = ctx.IDENTIFIER().getText()
-       exprprime1 = self.visit(ctx.exprprime(0))
-       exprprime2 = self.visit(ctx.exprprime(1))
-       stmtprime = self.visit(ctx.stmtprime())
-       return For(IDENTIFIER,exprprime1,exprprime2,stmtprime)
+         IDENTIFIER = ctx.IDENTIFIER().getText()
+         expr0 = self.visit(ctx.expr0(0))
+         expr1 = self.visit(ctx.expr0(1))
+         stmt = self.visit(ctx.stmt())
+         return For(Id(IDENTIFIER),expr0,expr1,stmt)
    # ifstmt: (IF LEFTPAREN expr0 RIGHTPAREN nllist stmt) elstmt (ELSE nllist stmt)?;
    def visitIfstmt(self,ctx:ZCodeParser.IfstmtContext):
        expr0 = self.visit(ctx.expr0())
@@ -182,10 +189,12 @@ class ASTGeneration(ZCodeVisitor):
    # continuestmt: CONTINUE nlprime;
    def visitContinuestmt(self,ctx:ZCodeParser.ContinuestmtContext):
        return Continue()
-   # returnstmt: RETURN expr0 nlprime;
+   # returnstmt: RETURN (expr0 |) nlprime;
    def visitReturnstmt(self,ctx:ZCodeParser.ReturnstmtContext):
-       exprlist = self.visit(ctx.expr0())
-       return Return(exprlist)
+       if ctx.expr0():
+           return Return(self.visit(ctx.expr0()))
+       else:
+           return Return(None)  
    # funstmt: IDENTIFIER LEFTPAREN exprlist RIGHTPAREN nlprime;
    def visitFunstmt(self,ctx:ZCodeParser.FunstmtContext):
        IDENTIFIER = ctx.IDENTIFIER().getText()
@@ -217,10 +226,16 @@ class ASTGeneration(ZCodeVisitor):
            return [self.visit(ctx.expr0())] + self.visit(ctx.exprprime())
    # expr0: expr1 CONCATENATION expr1 | expr1;
    def visitExpr0(self, ctx: ZCodeParser.Expr0Context):
-       if ctx.CONCATENATION():
-           return BinaryOp(ctx.CONCATENATION().getText(), self.visit(ctx.expr1(0)), self.visit(ctx.expr1(1)))
-       else:
+       if ctx.getChildCount()==1:
            return self.visit(ctx.expr1(0))
+       else:
+           return BinaryOp(ctx.CONCATENATION().getText(), self.visit(ctx.expr1(0)), self.visit(ctx.expr1(1)))
+    # expr1:expr2 (EQUAL | COMPARE | NOT_EQUAL | LT | GT | LTOE | GTOE) expr2| expr2;
+   def visitExpr1(self, ctx: ZCodeParser.Expr1Context):
+        if ctx.getChildCount() == 1:
+            return self.visit(ctx.expr2(0))
+        else:
+            return BinaryOp(ctx.getChild(1).getText(), self.visit(ctx.expr2(0)), self.visit(ctx.expr2(1)))
    # expr2: expr2 (AND | OR) expr3 | expr3;
    def visitExpr2(self, ctx: ZCodeParser.Expr2Context):
        if ctx.getChildCount() == 1:
@@ -259,7 +274,7 @@ class ASTGeneration(ZCodeVisitor):
            IDENTIFIER = ctx.IDENTIFIER().getText()
            exprlist = self.visit(ctx.exprlist()) if ctx.exprlist() else []
            exprprime = self.visit(ctx.exprprime())
-           return CallExpr(Id(IDENTIFIER),exprlist) if ctx.LEFTPAREN() else ArrayCell(Id(IDENTIFIER),exprprime)
+           return ArrayCell(CallExpr(Id(IDENTIFIER),exprlist),exprprime) if ctx.LEFTPAREN() else ArrayCell(Id(IDENTIFIER),exprprime)
    # expr8: IDENTIFIER LEFTPAREN exprlist RIGHTPAREN | expr9;
    def visitExpr8(self, ctx: ZCodeParser.Expr8Context):
        if ctx.getChildCount() == 1:
@@ -271,11 +286,11 @@ class ASTGeneration(ZCodeVisitor):
    # expr9: NUMBER_LITERAL | STRING_LITERAL | BOOLEAN_LITERAL | IDENTIFIER | array | expr10;
    def visitExpr9(self, ctx: ZCodeParser.Expr9Context):
        if ctx.NUMBER_LITERAL():
-           return NumberLiteral(int(ctx.NUMBER_LITERAL().getText())*1.0)
+           return NumberLiteral(float(ctx.NUMBER_LITERAL().getText()))
        elif ctx.STRING_LITERAL():
            return StringLiteral(ctx.STRING_LITERAL().getText())
        elif ctx.BOOLEAN_LITERAL():
-           return BooleanLiteral(ctx.BOOLEAN_LITERAL().getText())
+           return BooleanLiteral(ctx.BOOLEAN_LITERAL().getText()=='true')
        elif ctx.IDENTIFIER():
            return Id(ctx.IDENTIFIER().getText())
        elif ctx.array():

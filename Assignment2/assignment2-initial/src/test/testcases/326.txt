@@ -1,13 +1,4 @@
- func main()
-begin
-##this test case is to test if else
-dynamic a <- readNumber()
-if ((a>0) and (a<10))
-	a<-a*2
-else if ((a>10) and (a<20) )
-a<-a*3
-else a <- a*4
-return
+## expresion with concat string 
+func main() begin
+bool a <- foo((x < -2) or (("a'""..."a\'") == "a'"a\'"))[3,2]
 end
- 
- 

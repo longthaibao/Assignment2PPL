@@ -1,23 +1,6 @@
-
-        func main() begin 
-        end
-        func main() 
-            begin 
-                ## comment0
-            end
-        func main()
-            ## comment1
-            begin
-                ## comment2
-                
-                ## comment3
-                abcxyz <- 1 + 2 + fun()
-                abcxyz[1+a] <- 1
-                
-                ## comment4
-                abcxyz[3+4,2,4] <- 1
-                
-                ## comment5
-            end
-            ## comment
-        
+## this check break statement
+func main() begin 
+var i<-0
+for i until i=1 by 1
+    if (i=0) break 
+end 

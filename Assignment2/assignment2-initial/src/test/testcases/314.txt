@@ -1,7 +1,17 @@
-
-        func test_exp()
+##palindrome string 
+func isPalindrome(string s[100], number left, number right)
 begin
-    bool a <- not not a and b or not not c or d or e and b < not not not c and d or e or not not e
-    return a
+    ## Because ZCode string cannot be indexed, cut, etc...
+    ## We assume that s is an array of 1-length strings, aka characters
+    ## And we will check whether characters from left to right (inclusively) can make a palindrome string
+    
+    if (left > right + 1) return false
+    if ((left = right) or (left = right + 1)) return true
+    return (s[left] == s[right]) and isPalindrome(s, left + 1, right - 1)
 end
-        
+
+func main()
+begin
+    isPalindrome(["m", "o", "m"], 0, 2)
+    isPalindrome(["d", "o", "g", "e", "e", "s", "e", "s", "e", "e", "g", "o", "d"], 0, 12)
+end

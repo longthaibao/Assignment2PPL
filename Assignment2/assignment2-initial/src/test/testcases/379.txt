@@ -4,7 +4,6 @@ func print(string src, string dst) begin
     output <- output ... src
     output <- output ... " to tower "
     output <- output ... des
-    output <- output ... "
-"
+    output <- output ... "\n"
     writeString(output)
 end

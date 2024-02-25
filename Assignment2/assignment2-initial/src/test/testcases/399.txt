@@ -1,2 +1,9 @@
-##declaration check 
-dynamic abc <-2
+##if in for
+func main() begin
+    number i<-0 
+    for i until i>0 by 1
+        if (1) 
+            for i until i<0 by 1
+                if (2) continue
+                else break
+end

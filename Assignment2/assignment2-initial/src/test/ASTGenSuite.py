@@ -8,29 +8,29 @@ class ASTGenSuite(unittest.TestCase):
 var str <- "Hello world!"
 """
         expect = '''Program([VarDecl(Id(str), None, var, StringLit(Hello world!))])'''
-        try:
-            self.assertTrue(TestAST.test(input, expect, 300))
-        except:
-            print(f"fail test case: 0. This test case is: ## hello world")
+        #try:
+        self.assertTrue(TestAST.test(input, expect, 300))
+        #except:
+            #print(f"fail test case: 0. This test case is: ## hello world")
     def testcase1(self):
         input = """##single declaration
 number a 
 """
         expect = '''Program([VarDecl(Id(a), NumberType, None, None)])'''
-        try:
-            self.assertTrue(TestAST.test(input, expect, 301))
-        except:
-            print(f"fail test case: 1. This test case is: ##single declaration")
+        #try:
+        self.assertTrue(TestAST.test(input, expect, 301))
+        #except:
+            #print(f"fail test case: 1. This test case is: ##single declaration")
     def testcase2(self):
         input = """## array declaration check
 func foo(number a) return a+1
 number a[2,3] <- [[1+2,3,"abc",foo(4)],[true,false,true]]
 """
         expect = '''Program([FuncDecl(Id(foo), [VarDecl(Id(a), NumberType, None, None)], Return(BinaryOp(+, Id(a), NumLit(1.0)))), VarDecl(Id(a), ArrayType([2.0, 3.0], NumberType), None, ArrayLit(ArrayLit(BinaryOp(+, NumLit(1.0), NumLit(2.0)), NumLit(3.0), StringLit(abc), CallExpr(Id(foo), [NumLit(4.0)])), ArrayLit(BooleanLit(True), BooleanLit(False), BooleanLit(True))))])'''
-        try:
-            self.assertTrue(TestAST.test(input, expect, 302))
-        except:
-            print(f"fail test case: 2. This test case is: ## array declaration check")
+        #try:
+        self.assertTrue(TestAST.test(input, expect, 302))
+        #except:
+            #print(f"fail test case: 2. This test case is: ## array declaration check")
     def testcase3(self):
         input = """ ##mergesort with zcode
 func merge(number arr[100], number left, number mid, number right)
@@ -1743,18 +1743,42 @@ dynamic a
         #except:
             #print(f"fail test case: 98. This test case is: ##declaration check ")
     def testcase99(self):
-        input = """##if in for
-func main() begin
-    number i<-0 
-    for i until i>0 by 1
-        if (1) 
-            for i until i<0 by 1
-                if (2) continue
-                else break
-end
-"""
-        expect = '''Program([FuncDecl(Id(main), [], Block([VarDecl(Id(i), NumberType, None, NumLit(0.0)), For(Id(i), BinaryOp(>, Id(i), NumLit(0.0)), NumLit(1.0), If((NumLit(1.0), For(Id(i), BinaryOp(<, Id(i), NumLit(0.0)), NumLit(1.0), If((NumLit(2.0), Continue), [], Break))), [], None))]))])'''
+         input = """
+            func main() begin
+                bool b <- true and not false
+                if (1)
+                    if (2)
+                        for _3 until 4 by 5 b <- 7
+                    elif (8)
+                        if (9)
+                            for _10 until 11 by 12
+                                if (13) break
+                                else for _14 until 15 by 16
+                                    if (17) continue
+                                    else return
+                        elif (18) print()
+            end
+        """
+         expect = str(Program([
+            FuncDecl(Id("main"),[],Block([
+                VarDecl(Id("b"),BoolType(),None,BinaryOp("and",BooleanLiteral(True),UnaryOp("not",BooleanLiteral(False)))),
+                If(NumberLiteral(1.0),
+                    If(NumberLiteral(2.0),
+                        For(Id("_3"),NumberLiteral(4.0),NumberLiteral(5.0),Assign(Id("b"),NumberLiteral(7.0))),
+                        [(NumberLiteral(8.0),
+                          If(NumberLiteral(9.0),
+                             For(Id("_10"),NumberLiteral(11.0),NumberLiteral(12.0),
+                                 If(NumberLiteral(13.0),Break(),[],For(Id("_14"),NumberLiteral(15.0),NumberLiteral(16.0),
+                                                                        If(NumberLiteral(17.0),Continue(),[],Return()))
+                                )),
+                             [(NumberLiteral(18.0),CallStmt(Id("print"),[]))]
+                            )
+                        )]
+                    )
+                )
+            ]))
+        ]))
+         self.assertTrue(TestAST.test(input,expect,399))
         #try:
-        self.assertTrue(TestAST.test(input, expect, 399))
         #except:
-        # print(f"fail test case: 99. This test case is: ##if in for")
+            #print(f"fail test case: 99. This test case is: ##if in for")

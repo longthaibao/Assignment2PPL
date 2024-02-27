@@ -173,37 +173,16 @@ class ASTGeneration(ZCodeVisitor):
          expr1 = self.visit(ctx.expr0(1))
          stmt = self.visit(ctx.stmt())
          return For(Id(IDENTIFIER),expr0,expr1,stmt)
-#    def visitIfstmt(self,ctx:ZCodeParser.IfstmtContext):
-#        expr0 = self.visit(ctx.expr0())
-#        stmt = self.visit(ctx.stmt(0))
-#        elstmt = self.visit(ctx.elstmt())
-#        if ctx.ELSE():
-#            stmt1 = self.visit(ctx.stmt(1))
-#            return If(expr0,stmt,elstmt,stmt1)
-#        else:
-#            return If(expr0,stmt,elstmt)
-#    ifstmt: IF LEFTPAREN expr0 RIGHTPAREN nllist stmt | IF LEFTPAREN expr0 RIGHTPAREN nllist stmt elstmt | IF LEFTPAREN expr0 RIGHTPAREN nllist stmt ELSE nllist stmt | IF LEFTPAREN expr0 RIGHTPAREN nllist stmt elstmt ELSE nllist stmt;
+# ifstmt:(IF LEFTPAREN expr0 RIGHTPAREN nllist stmt) elstmt ( ELSE nllist stmt)?;
    def visitIfstmt(self,ctx:ZCodeParser.IfstmtContext):
-       if not ctx.ELSE() and not ctx.elstmt():
-           expr0 = self.visit(ctx.expr0())
-           stmt = self.visit(ctx.stmt(0))
-           return If(expr0,stmt,[],None)
-       elif not ctx.ELSE() and ctx.elstmt():
-              expr0 = self.visit(ctx.expr0())
-              stmt = self.visit(ctx.stmt(0))
-              elstmt = self.visit(ctx.elstmt())
-              return If(expr0,stmt,elstmt,None)
-       elif ctx.ELSE() and not ctx.elstmt():
-                expr0 = self.visit(ctx.expr0())
-                stmt = self.visit(ctx.stmt(0))
-                stmt1 = self.visit(ctx.stmt(1))
-                return If(expr0,stmt,[],stmt1)
+       expr0 = self.visit(ctx.expr0())
+       stmt = self.visit(ctx.stmt(0))
+       elstmt = self.visit(ctx.elstmt())
+       if ctx.ELSE():
+           stmt1 = self.visit(ctx.stmt(1))
+           return If(expr0,stmt,elstmt,stmt1)
        else:
-              expr0 = self.visit(ctx.expr0())
-              stmt = self.visit(ctx.stmt(0))
-              elstmt = self.visit(ctx.elstmt())
-              stmt1 = self.visit(ctx.stmt(1))
-              return If(expr0,stmt,elstmt,stmt1)
+           return If(expr0,stmt,elstmt,None)
    # breakstmt: BREAK nlprime;
    def visitBreakstmt(self,ctx:ZCodeParser.BreakstmtContext):
        return Break()
@@ -223,19 +202,16 @@ class ASTGeneration(ZCodeVisitor):
        return CallStmt(Id(IDENTIFIER),exprlist)
    # blockstmt: BEGIN nlprime stmtlist END nlprime;
    def visitBlockstmt(self,ctx:ZCodeParser.BlockstmtContext):
-       stmtlist = self.visit(ctx.stmtlist())
-       return Block(stmtlist)
-   # elstmt: elprime |;
+        stmtlist = self.visit(ctx.stmtlist())
+        return Block(stmtlist)
+    # elstmt: elifpart elstmt |;
    def visitElstmt(self,ctx:ZCodeParser.ElstmtContext):
-       return self.visit(ctx.elprime()) if ctx.elprime() else []
-   # elprime: ELIF LEFTPAREN expr0 RIGHTPAREN nllist stmt elprime| ELIF LEFTPAREN expr0 RIGHTPAREN nllist stmt;
-   def visitElprime(self,ctx:ZCodeParser.ElprimeContext):
-       expr0 = self.visit(ctx.expr0())
-       stmt = self.visit(ctx.stmt())
-       if ctx.elprime():
-           return [(expr0,stmt)] + self.visit(ctx.elprime())
-       else:
-           return [(expr0,stmt)]
+        return self.visit(ctx.elifpart()) + self.visit(ctx.elstmt()) if ctx.elifpart() else []
+   # elifpart: ELIF LEFTPAREN expr0 RIGHTPAREN nllist stmt;
+   def visitElifpart(self,ctx:ZCodeParser.ElifpartContext):
+        expr0 = self.visit(ctx.expr0())
+        stmt = self.visit(ctx.stmt())
+        return [(expr0,stmt)] 
    # exprlist: exprprime |;
    def visitExprlist(self,ctx:ZCodeParser.ExprlistContext):
        return self.visit(ctx.exprprime()) if ctx.exprprime() else []

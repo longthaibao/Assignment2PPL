@@ -65,22 +65,19 @@ assignstmt: (
 		IDENTIFIER
 		| (IDENTIFIER LEFTBRACKET exprprime RIGHTBRACKET)
 	) ASSIGN expr0 nlprime;
-// ifstmt: (IF LEFTPAREN expr0 RIGHTPAREN nllist stmt) elstmt ( ELSE nllist stmt )?; if if elif if
-// else if elif else
+// ifstmt: (IF LEFTPAREN expr0 RIGHTPAREN nllist stmt) elstmt ( ELSE nllist stmt )?; 
 ifstmt:
-	IF LEFTPAREN expr0 RIGHTPAREN nllist stmt
-	| IF LEFTPAREN expr0 RIGHTPAREN nllist stmt elstmt
-	| IF LEFTPAREN expr0 RIGHTPAREN nllist stmt ELSE nllist stmt
-	| IF LEFTPAREN expr0 RIGHTPAREN nllist stmt elstmt ELSE nllist stmt;
+	(IF LEFTPAREN expr0 RIGHTPAREN nllist stmt) elstmt (
+		ELSE nllist stmt
+	)?;
+elstmt: elifpart elstmt |;
+elifpart: (ELIF LEFTPAREN expr0 RIGHTPAREN nllist stmt);
 breakstmt: BREAK nlprime;
 continuestmt: CONTINUE nlprime;
 returnstmt: RETURN (expr0 |) nlprime;
 funstmt: IDENTIFIER LEFTPAREN exprlist RIGHTPAREN nlprime;
 blockstmt: BEGIN nlprime stmtlist END nlprime;
-elstmt: elprime |;
-elprime:
-	ELIF LEFTPAREN expr0 RIGHTPAREN nllist stmt elprime
-	| ELIF LEFTPAREN expr0 RIGHTPAREN nllist stmt;
+
 //Expression
 exprlist: exprprime |;
 exprprime: expr0 COMMA exprprime | expr0;

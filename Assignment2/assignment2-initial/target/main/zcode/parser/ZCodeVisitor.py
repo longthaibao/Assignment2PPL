@@ -149,6 +149,16 @@ class ZCodeVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by ZCodeParser#elstmt.
+    def visitElstmt(self, ctx:ZCodeParser.ElstmtContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ZCodeParser#elifpart.
+    def visitElifpart(self, ctx:ZCodeParser.ElifpartContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by ZCodeParser#breakstmt.
     def visitBreakstmt(self, ctx:ZCodeParser.BreakstmtContext):
         return self.visitChildren(ctx)
@@ -171,16 +181,6 @@ class ZCodeVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by ZCodeParser#blockstmt.
     def visitBlockstmt(self, ctx:ZCodeParser.BlockstmtContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by ZCodeParser#elstmt.
-    def visitElstmt(self, ctx:ZCodeParser.ElstmtContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by ZCodeParser#elprime.
-    def visitElprime(self, ctx:ZCodeParser.ElprimeContext):
         return self.visitChildren(ctx)
 
 

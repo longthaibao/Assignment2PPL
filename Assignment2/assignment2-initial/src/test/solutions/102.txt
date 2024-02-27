@@ -1,10 +1,1 @@
-
-,<=,string,*,a1,
-,elif,
-,!=,
-,true,string,[,<-,number,end,*,<,for,a1,true,,,/,var,
-,(,return,var,==,
-,or,not,
-,69.48e6400,var,string,var,by,*,...,),=,[,if,>,begin,number,a1,begin,
-,=,by,
-,<EOF>
+Error Token '

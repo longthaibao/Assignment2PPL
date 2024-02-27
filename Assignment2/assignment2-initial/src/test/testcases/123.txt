@@ -1,2 +1,0 @@
-string a<-"2BP0'"s"
-    
